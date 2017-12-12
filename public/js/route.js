@@ -10,7 +10,10 @@ app.config(function($routeProvider) {
         templateUrl : 'pages/about.ejs',
         controller : 'aboutController'
     })
-    
+    .when('/login', {
+        templateUrl : 'pages/login.ejs',
+        controller : 'loginController'
+    })
     .otherwise({
         templateUrl : 'pages/home.ejs',
         controller : 'homeController'
