@@ -1,0 +1,30 @@
+{
+  "name": "incridea-registration",
+  "version": "1.0.0",
+  "description": "Registration Software used generate pid for all the participants and get there details",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shashankshetty1996/Incridea-Registration.git"
+  },
+  "keywords": [
+    "incridea",
+    "registration",
+    "college-fest"
+  ],
+  "author": "Shashank S Shetty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shashankshetty1996/Incridea-Registration/issues"
+  },
+  "homepage": "https://github.com/shashankshetty1996/Incridea-Registration#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
+}
