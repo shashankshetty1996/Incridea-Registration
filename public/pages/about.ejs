@@ -1,16 +1,36 @@
 <section>
     <div class="container">
+        <h1 class="display-4 my-2">Development Team</h1>
         <div class="row">
-            <div class="col-md-6 col-xs-12" ng-repeat="dev in developer">
+            <div class="col-md-4 col-sm-6 col-xs-12 my-2" ng-repeat="member in team | filter : {'type' : 'developer'}">
                 <div class="card">
-                    <img class="card-img-top" height="300" ng-src="{{dev.photo}}" alt="Card image">
+                    <img class="card-img-top embed-responsive-4by3" height="150" ng-src="{{member.photo}}" src="img/img_avatar1.png">
                     <div class="card-body">
-                        <h4 class="card-title text-center">{{ dev.name }}</h4>
-                        <p class="card-text">Mobile number <kbd>{{ dev.mob }}</kbd></p>
-                        <a ng-href="{{ dev.link }}" target="_blank" class="btn btn-primary">View my GitHub Account</a>
+                        <h4 class="card-title text-center">{{ member.name }}</h4>
+                        <p class="card-text text-left">Mobile number <kbd>{{ member.mob }}</kbd></p>
+                        <a ng-href="{{ member.link }}" target="_blank" class="btn btn-primary">View my Profile</a>
                     </div>
                 </div>
+                <br>
             </div>
         </div>
+        <hr>
+        <h1 class="display-4 my-2">Core Team</h1> 
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 my-2" ng-repeat="member in team | filter : {'type' : 'core'}">
+                <div class="card">
+                    <img class="card-img-top embed-responsive-4by3" height="150" ng-src="{{member.photo}}" src="img/img_avatar1.png">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{ member.name }}</h4>
+                        <p class="card-text text-left">Mobile number
+                            <kbd>{{ member.mob }}</kbd>
+                        </p>
+                        <hr>
+                        <a ng-href="{{ member.link }}" target="_blank" class="btn btn-primary">Get in touch</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>           
     </div>
 </section>
