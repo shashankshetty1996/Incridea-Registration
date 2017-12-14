@@ -26,16 +26,21 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// MySQL connection configuration
-const con = mysql.createConnection({
-    host : "127.0.0.1" || "localhost",
-    user : process.env.user || "root",
-    password : process.env.dbpassword || '',
-    database : "incridea"
-});
-
 // Setting up static folder
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+// MySQL connection configuration
+// to make connection object access global through out the node application
+app.use((req, res, next) => {
+    global.con = mysql.createConnection({
+        host : "127.0.0.1" || "localhost",
+        user : process.env.DB_USER || "root",
+        password : process.env.DB_PASSWORD || '',
+        database : process.env.DB_NAME || "incridea"
+    });
+    con.connect();
+    next();
+});
 
 // Express Session
 app.use(session({
@@ -81,4 +86,6 @@ app.use(function(err, req, res, next) {
     res.send('Error something went wrong');
 });
 
-app.listen(port, () => console.log(`Started Node Server on port ${port}`));
+app.listen(port, () => {
+     console.log(`Started Node Server on port ${port}`);
+});
