@@ -15,4 +15,19 @@ router.get('/createTable', (req, res) => {
     });
 });
 
+router.post('/login', (req, res) => {
+    // console.log(req.body.username+ '\n' + req.body.password);
+    let username = req.body.username;
+    let password = req.body.password;
+    User.login(username, password, (err, result) => {
+        if(err) throw err;
+        // if(result.length == 0) {
+        //     res.send('Invaild username or password');
+        // } else {
+        //     res.json(result);
+        // }
+        res.json(result);        
+    });
+});
+
 module.exports = router;
