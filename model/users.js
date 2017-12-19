@@ -13,3 +13,8 @@ module.exports.login = (username, password, callback) => {
     let sql = "select flag from users where username = " + mysql.escape(username) + " and password = " + mysql.escape(password);
     global.con.query(sql, callback); 
 }
+
+module.exports.getUser = (username, callback) => {
+    let sql = "select * from users where username = " + mysql.escape(username);
+    global.con.query(sql, callback);
+}

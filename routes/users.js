@@ -15,6 +15,15 @@ router.get('/createTable', (req, res) => {
     });
 });
 
+// auth call from the user
+router.post('/', (req, res) => {
+    let username = req.body.username;
+    User.getUser(username, (err, result) => {
+        if(err) throw err;
+        res.json(result);
+    });
+});
+
 router.post('/login', (req, res) => {
     // console.log(req.body.username+ '\n' + req.body.password);
     let username = req.body.username;
