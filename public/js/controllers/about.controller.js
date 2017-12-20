@@ -1,4 +1,9 @@
-angular.module('myApp').controller('aboutController',function($scope,$http) {
+angular
+.module('myApp')
+.controller('aboutController',aboutController);
+
+aboutController.$inject = ['$scope'];
+function aboutController($scope) {
     $scope.team = [
         {
             "name":"Shashank S Shetty", 
@@ -15,4 +20,4 @@ angular.module('myApp').controller('aboutController',function($scope,$http) {
             "type" : "core"
         }
     ];
-});
+};

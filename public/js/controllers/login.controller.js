@@ -1,4 +1,9 @@
-angular.module('myApp').controller('loginController',function($scope, $location, AuthenticationService) {
+angular
+.module('myApp')
+.controller('loginController', loginController);
+
+loginController.$inject = ['$scope', '$location', 'AuthenticationService'];
+function loginController($scope, $location, AuthenticationService) {
 
     $scope.msg='Login Page';
 
@@ -52,4 +57,4 @@ angular.module('myApp').controller('loginController',function($scope, $location,
             $scope.password = "";
         }
     }
-});
+};
