@@ -17,6 +17,10 @@ app.config(function ($routeProvider) {
             controller: 'loginController',
             controllerAs: 'vm'
         })
+        .when('/dashboard', {
+            templateUrl: 'pages/dashboard.ejs',
+            controller: 'dashboardController',
+        })
         .otherwise({
             redirectTo: '/'
         });

@@ -39,7 +39,7 @@ angular.module('myApp').controller('loginController',function($scope, $location,
             if (response.success) {
                 AuthenticationService.SetCredentials(username, password);
                 $scope.clearField();
-                $location.path('/');
+                $location.path('/dashboard');
             } else {
                 $scope.username = "Invalid Credentials";
                 $scope.password = "Invalid Credentials";
