@@ -4,22 +4,23 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'pages/home.ejs',
-            controller: 'homeController',
-            controllerAs: 'vm'
+            controller: 'homeController'
         })
         .when('/about', {
             templateUrl: 'pages/about.ejs',
-            controller: 'aboutController',
-            controllerAs: 'vm'
+            controller: 'aboutController'
         })
         .when('/login', {
             templateUrl: 'pages/login.ejs',
-            controller: 'loginController',
-            controllerAs: 'vm'
+            controller: 'loginController'
         })
         .when('/dashboard', {
             templateUrl: 'pages/dashboard.ejs',
             controller: 'dashboardController',
+        })
+        .when('/stat', {
+            templateUrl: 'pages/stat.ejs',
+            controller: 'statController'
         })
         .otherwise({
             redirectTo: '/'
