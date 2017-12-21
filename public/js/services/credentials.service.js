@@ -12,15 +12,9 @@
         let login = false;
 
         service.getLogin = getLogin;
-        service.setLogin = setLogin;
         service.getAdmin = getAdmin;
-        service.setAdmin = setAdmin;
 
         return service;
-
-        function setAdmin(value) {
-            admin = value;
-        }
 
         function getAdmin() {
             if ($rootScope.globals.currentUser) {
@@ -29,10 +23,6 @@
                 admin = false;
             }
             return admin;
-        }
-
-        function setLogin(value) {
-            login = value;
         }
 
         function getLogin() {
