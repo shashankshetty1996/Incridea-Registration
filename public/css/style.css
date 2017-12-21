@@ -16,3 +16,30 @@
 #loginCard label {
     font-weight: bold;
 }
+
+a.links {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.side-dashboard-nav {
+    min-height: 80vh !important;
+}
+
+.side-dashboard-nav > li {
+    padding: 10px;
+    padding-bottom: 5px;
+    background-color: #f8f9fa;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.side-dashboard-nav > li.active {
+    text-align: center;
+}
+
+.side-dashboard-nav > li:first-child {
+    border: none;
+}

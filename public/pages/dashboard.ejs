@@ -1,3 +1,44 @@
-<section class="container">
-    <h2>{{ msg }}</h2>
+<section>
+    <div class="bg-primary p-1 px-3 d-flex">
+        <marquee behavior="scroll" direction="left">
+            <h6 class="text-white">{{msg}}</h6>
+        </marquee>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-12 border border-top-0 border-bottom-0 border-left-0 bg-light px-0">
+                <h5 class="text-capitalize text-center my-2">Dashboard Options</h5>
+                <!-- ul.list-group>li.list-group-item.border.border-0*4>a.links[href="#"]{item $} -->
+                <!-- ul.list-group>li.list-group-item.border.border-0*4>a.links[href="#"]>h2.text-capitalize{item $}                 -->
+                <ul class="list-group side-dashboard-nav">
+                    <li class="list-group-item active">
+                        <h2 class="text-capitalize h6">Heading 1</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">item 1</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">item 2</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">item 3</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">item 4</h2>
+                        </a>
+                    </li>
+                </ul>                
+            </div>
+            <div class="col-md-10 col-sm-12 d-flex justify-content-center">
+                <h1 class="display-1 text-capitalize">main section</h1>
+            </div>
+        </div>
+    </div>
 </section>
