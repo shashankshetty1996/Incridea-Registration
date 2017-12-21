@@ -7,16 +7,13 @@ function rootController($scope, $interval, CredentialsService, AuthenticationSer
     // console.log("I'm in root controller with login scope as " + CredentialsService.getLogin());
     // console.log("I'm in root controller with admin scope as " + CredentialsService.getAdmin());
 
-    $scope.initController = () => {
+    $scope.logout = () => {
         // reset login status
         AuthenticationService.ClearCredentials();
-        CredentialsService.setLogin(false);
-        CredentialsService.setAdmin(false);
     };
 
-    $scope.initController();
+    // $scope.initController();
 
-    // $scope.admin = true;
     $scope.login = false;
     $scope.admin = false;
 
