@@ -67,7 +67,7 @@
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
             let cookieExp = new Date();
-            cookieExp.setDate(cookieExp.getHours() + 7);
+            cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
         }
 

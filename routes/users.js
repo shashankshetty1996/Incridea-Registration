@@ -20,7 +20,11 @@ router.post('/', (req, res) => {
     let username = req.body.username;
     User.getUser(username, (err, result) => {
         if(err) throw err;
-        res.json(result);
+        if(result != '') {        
+            res.json(result);
+        } else {
+            res.json([{username: '', password: '', flag: 0 }]);
+        }
     });
 });
 

@@ -1,34 +1,27 @@
 <section id="loginBody">
     <div class="container">
-        <h1 class="display-4 p-3 mb-5">{{ msg }}</h1>
+        <h1 class="display-4 p-2 mb-5">{{ msg }}</h1>
+
+        <div class="alert alert-danger alert-dismissable fade show" ng-show="errorStatus">
+            <button type="button" class="close" ng-click="errorStatusReset()" data-dismiss="alert">&times;</button>
+            <strong>{{ errorMsg }}</strong>
+        </div>
 
         <div class="row align-content-center justify-content-center">
             <div class="w-50">
                 <div id="loginCard" class="card">
                     <div class="card-body">
-                        <!-- <form method="post" ng-submit="login()">
-                            <div class="form-group">
-                                <label for="username">Name:</label>
-                                <input type="text" class="form-control" ng-model="username" name="username" placeholder="Enter your username here" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" ng-model="password" name="password" placeholder="Enter your password here" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="login">
-                            </div>
-                        </form> -->
+                        <!-- <h4>{{ errorMsg }}</h4> -->
                         <form name="form" ng-submit="login()" role="form">
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
-                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block text-danger">Username is required</span>
                             </div>
                             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
-                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block text-danger">Password is required</span>
                             </div>
                             <div class="form-actions">
                                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
@@ -38,6 +31,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
