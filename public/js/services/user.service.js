@@ -12,6 +12,7 @@
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
+        service.GetByUser = GetByUser;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -27,11 +28,15 @@
         }
 
         function GetByUsername(username) {
-            return $http.post('/users', {username : username}).then(handleSuccess, handleError('Error getting user by username'));
+            return $http.get('/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+        }
+
+        function GetByUser(username, password) {
+            return $http.post('/users', {username : username, password : password}).then(handleSuccess, handleError('Error getting user by username'));
         }
 
         function Create(user) {
-            return $http.post('/users', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('/users/create', user).then(handleSuccess, handleError('Error creating user'));
         }
 
         function Update(user) {

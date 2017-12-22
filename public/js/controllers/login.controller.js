@@ -21,7 +21,7 @@ function loginController($scope, $location, AuthenticationService) {
 
         AuthenticationService.Login(username, password, function (response) {
             if (response.success) {
-                AuthenticationService.SetCredentials(username, password);
+                // AuthenticationService.SetCredentials(username, password);
                 $scope.clearField();
                 $location.path('/dashboard');
             } else {

@@ -31,7 +31,7 @@ app.run(function ($rootScope, $location, $cookies, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookies.getObject('globals') || {};
     if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + $rootScope.globals.currentUser.token;
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -42,11 +42,6 @@ app.run(function ($rootScope, $location, $cookies, $http) {
         // set default redirect to home if not logged in
         if (restrictedPage && !loggedIn) {
             $location.path('/');
-        }
-
-        // set default redirect to dashboard if logged in        
-        if (restrictedPage && loggedIn) {
-            $location.path('/dashboard');
         }
     });
 });

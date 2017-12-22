@@ -11,7 +11,7 @@
         let response;
 
         service.Login = Login;
-        service.SetCredentials = SetCredentials;
+        service.SetCredentialToken = SetCredentialToken;
         service.ClearCredentials = ClearCredentials;
 
         return service;
@@ -40,10 +40,11 @@
             //        callback(response);
             //    });
 
-            UserService.GetByUsername(username)
+            UserService.GetByUser(username, password)
                 .then( function(user) {
-                    if(user[0] !== null && user[0].password === password) {
-                        response = { success : true };
+                    if(user !== null && user.username === username) {
+                        response = { success : true };             
+                        SetCredentialToken(user.token);
                     } else {
                         response = { success: false, message: 'Username or password is incorrect' };
                     }
@@ -52,29 +53,46 @@
 
         }
 
-        function SetCredentials(username, password) {
-            let authdata = Base64.encode(username + ':' + password);
-
+        function SetCredentialToken(token) {
             $rootScope.globals = {
                 currentUser: {
                     username: username,
-                    authdata: authdata
+                    token: token
                 }
             };
 
             // set default auth header for http requests
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
             let cookieExp = new Date();
-            cookieExp.setDate(cookieExp.getDate() + 7);
+            cookieExp.setDate(cookieExp.getHours() + 9);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
         }
+
+        // function SetCredentials(username, password) {
+        //     let authdata = Base64.encode(username + ':' + password);
+
+        //     $rootScope.globals = {
+        //         currentUser: {
+        //             username: username,
+        //             authdata: authdata
+        //         }
+        //     };
+
+        //     // set default auth header for http requests
+        //     $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+
+        //     // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
+        //     let cookieExp = new Date();
+        //     cookieExp.setDate(cookieExp.getDate() + 7);
+        //     $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+        // }
 
         function ClearCredentials() {
             $rootScope.globals = {};
             $cookies.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic';
+            $http.defaults.headers.common.Authorization = 'Bearer';
         }
     }
 
