@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 
 const User = require('../model/users');
+const auth = require('../model/auth');
 
 let router = express.Router();
 
@@ -25,16 +26,16 @@ router.post('/', (req, res) => {
     User.getUser(username, password, (err, result) => {
         if(err) {       
             res.sendStatus(403);
-        } else if(result != '') { 
+        }
+        if(result != '') { 
             // user found in the database  
             let user = result[0];
-            jwt.sign({user:user.username}, 'secretkey', { expiresIn : '9h'}, (err, token) => {
+            jwt.sign({user:user.username}, 'incridea', { expiresIn : '9h'}, (err, token) => {
                 result[0].token = token;
                 result = result[0];
                 console.log(result);
                 res.json(result);
             });
-            // res.json(result[0]);
         } else {
             res.json({username: '', password: '', flag: 0 });
         }
@@ -42,7 +43,7 @@ router.post('/', (req, res) => {
 });
 
 router.post('/test', verifyToken, (req, res) => {
-    jwt.verify(req.token, 'secretkey', (err, autoData) => {
+    jwt.verify(req.token, 'incridea', (err, autoData) => {
         if(err) {
             res.sendStatus(403);
         } else {
@@ -56,18 +57,19 @@ router.post('/test', verifyToken, (req, res) => {
 
 function verifyToken(req, res, next) {
     // Get auth header value
-    const bearerHeader = req.headers['authorization'];
+    // const bearerHeader = req.headers['authorization'];
 
-    console.log(req.header['authorization']);
-    if(typeof bearerHeader !== 'undefined') {
-        const bearer = bearerHeader.split(' ');
-        const bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        // res.send(req.header);
-        res.sendStatus(403);
-    }
+    // console.log(req.header['authorization']);
+    // if(typeof bearerHeader !== 'undefined') {
+    //     const bearer = bearerHeader.split(' ');
+    //     const bearerToken = bearer[1];
+    //     req.token = bearerToken;
+    //     next();
+    // } else {
+    //     // res.send(req.header);
+    //     res.sendStatus(403);
+    // }
+    auth.verifyToken(req, res, next);
 }
 
 module.exports = router;

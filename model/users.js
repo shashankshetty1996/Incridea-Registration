@@ -11,6 +11,5 @@ module.exports.createTable = (callback) => {
 
 module.exports.getUser = (username, password, callback) => {
     let sql = "select * from users where username = " + mysql.escape(username) + " and password = " + mysql.escape(password);
-    console.log('i am in model');
     global.con.query(sql, callback);
 }
