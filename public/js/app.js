@@ -27,9 +27,9 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.run(function ($rootScope, $location, $cookies, $http) {
+app.run(function ($rootScope, $location, $http) {
     // keep user logged in after page refresh
-    $rootScope.globals = $cookies.getObject('globals') || {};
+    $rootScope.globals = JSON.parse(localStorage.getItem('globals')) || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + $rootScope.globals.currentUser.token;
     }

@@ -41,10 +41,10 @@
             //    });
 
             UserService.GetByUser(username, password)
-                .then( function(user) {
+                .then( function(user) {                    
                     if(user !== null && user.username === username) {
                         response = { success : true };             
-                        SetCredentialToken(user.token);
+                        SetCredentialToken(username, user.token);
                     } else {
                         response = { success: false, message: 'Username or password is incorrect' };
                     }
@@ -53,7 +53,7 @@
 
         }
 
-        function SetCredentialToken(token) {
+        function SetCredentialToken(username, token) {
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -63,11 +63,16 @@
 
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+            // Local Storage concept.
+            localStorage.setItem('globals', JSON.stringify($rootScope.globals));
+            // deleting after 9 hours
+            $timeout(localStorage.removeItem('globals'), 9*60*60*1000);
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
-            let cookieExp = new Date();
-            cookieExp.setDate(cookieExp.getHours() + 9);
-            $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+            // let cookieExp = new Date();
+            // cookieExp.setDate(9);
+            // $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+            
         }
 
         // function SetCredentials(username, password) {
@@ -91,7 +96,8 @@
 
         function ClearCredentials() {
             $rootScope.globals = {};
-            $cookies.remove('globals');
+            // $cookies.remove('globals');
+            localStorage.removeItem('globals');
             $http.defaults.headers.common.Authorization = 'Bearer';
         }
     }
