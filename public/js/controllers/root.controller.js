@@ -22,4 +22,6 @@ function rootController($scope, $interval, CredentialsService, AuthenticationSer
         $scope.login = CredentialsService.getLogin();
         $scope.admin = CredentialsService.getAdmin();
     }, 1000);
+
+    $scope.dashboardMsg = "INCRIDEA 2K18"
 };

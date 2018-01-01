@@ -22,6 +22,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'pages/stat.ejs',
             controller: 'statController'
         })
+        .when('/dashboard/register', {
+            templateUrl: 'pages/dashboard/register.ejs',
+            controller: 'dashboardRegisterController'
+        })
         .otherwise({
             redirectTo: '/'
         });

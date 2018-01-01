@@ -1,0 +1,100 @@
+<section>
+    <div class="bg-primary p-1 px-3 d-flex">
+        <marquee behavior="scroll" direction="left" scrollamount="30" scrolldelay="200">
+            <h6 class="text-white">{{ dashboardMsg }}</h6>
+        </marquee>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-12 border border-top-0 border-bottom-0 border-left-0 bg-light px-0">
+                <ul class="list-group side-dashboard-nav">
+                    <li class="list-group-item">
+                        <h4 class="text-capitalize text-center my-2">Dashboard Options</h4>
+                    </li>
+                    <li class="list-group-item active">
+                        <h2 class="text-capitalize h6">General</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Instruction</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard/register" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Register PID</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item active">
+                        <h2 class="text-capitalize h6">PID List</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Total Registration</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Registration Issue</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item active">
+                        <h2 class="text-capitalize h6">Events</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Events Registration</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Events Schedule</h2>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#!dashboard" class="list-group-item-action links">
+                            <h2 class="text-capitalize h6">Contact Organizers</h2>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10 col-sm-12 d-flex flex-column justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="my-2 pb-2 text-capitalize">Register PID here</h4>
+                        <!-- <h4>{{ errorMsg }}</h4> -->
+                        <form name="form" ng-submit="login()" role="form">
+                            <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <label for="name" class="col-md-2 col-sm-12 mt-2">Name</label>
+                                <input type="text" name="name" id="name" class="form-control col-md-8 col-sm-12" ng-model="name" placeholder="Enter the Participants Name here" required />
+                                <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block text-danger col-md-2 col-sm-12 mt-2">Name is required</span>
+                            </div>
+                            <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <label for="usn" class="col-md-2 col-sm-12 mt-2">USN</label>
+                                <input type="text" name="usn" id="usn" class="form-control col-md-8 col-sm-12" ng-model="usn" placeholder="Enter the Participants USN here" required />
+                                <span ng-show="form.usn.$dirty && form.usn.$error.required" class="help-block text-danger col-md-2 col-sm-12 mt-2">USN is required</span>
+                            </div>
+                            <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <label for="email" class="col-md-2 col-sm-12 mt-2">Email ID</label>
+                                <input type="email" name="email" id="email" class="form-control col-md-8 col-sm-12" ng-model="email" placeholder="Enter the Participants Email ID here" required />
+                                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block text-danger col-md-2 col-sm-12 mt-2">Email ID is required</span>
+                            </div>
+                            <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                <label for="phone" class="col-md-2 col-sm-12 mt-2">Phone No</label>
+                                <input type="email" name="phone" id="phone" class="form-control col-md-8 col-sm-12" ng-model="phone" placeholder="Enter the Participants Phone Number here" required />
+                                <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block text-danger col-md-2 col-sm-12 mt-2">Phone Number is required</span>
+                            </div>
+                            <!-- <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block text-danger">Password is required</span>
+                            </div> -->
+                            <div class="form-actions">
+                                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary offset-md-4">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
