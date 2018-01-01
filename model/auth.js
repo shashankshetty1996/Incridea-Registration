@@ -1,14 +1,13 @@
-module.exports.verifyToken = (req, res, next) => {
-    const bearerHeader = req.headers['authorization'];
+module.exports.verifyToken = (req, res) => {
+    const bearerHeader = req.header['Authorization'];
 
-    console.log(req.header['authorization']);
+    console.log(`Authorization header is ${bearerHeader}`);
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
         req.token = bearerToken;
-        next();
     } else {
-        // res.send(req.header);
+        console.log('this is 403 yar');
         res.sendStatus(403);
     }
 }
