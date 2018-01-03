@@ -62,7 +62,7 @@
                     <div class="card-body">
                         <h4 class="my-2 pb-2 text-capitalize">Register PID here</h4>
                         <!-- <h4>{{ errorMsg }}</h4> -->
-                        <form name="form" ng-submit="login()" role="form">
+                        <form name="form" ng-submit="register()" role="form">
                             <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <label for="name" class="col-md-2 col-sm-12 mt-2">Name</label>
                                 <input type="text" name="name" id="name" class="form-control col-md-8 col-sm-12" ng-model="name" placeholder="Enter the Participants Name here" required />
@@ -80,14 +80,9 @@
                             </div>
                             <div class="form-group row" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <label for="phone" class="col-md-2 col-sm-12 mt-2">Phone No</label>
-                                <input type="email" name="phone" id="phone" class="form-control col-md-8 col-sm-12" ng-model="phone" placeholder="Enter the Participants Phone Number here" required />
+                                <input type="text" name="phone" id="phone" class="form-control col-md-8 col-sm-12" ng-model="phone" placeholder="Enter the Participants Phone Number here" required />
                                 <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block text-danger col-md-2 col-sm-12 mt-2">Phone Number is required</span>
                             </div>
-                            <!-- <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
-                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block text-danger">Password is required</span>
-                            </div> -->
                             <div class="form-actions">
                                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary offset-md-4">Submit</button>
                             </div>
