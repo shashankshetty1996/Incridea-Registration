@@ -57,8 +57,7 @@ router.post('/test', verifyToken, (req, res) => {
 
 function verifyToken(req, res, next) {
     // Get auth header value
-    const bearerHeader = req.headers['authorization'];
-    console.log(`Authorization header is ${bearerHeader}`);    
+    const bearerHeader = req.headers['authorization'];    
 
     if(typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
