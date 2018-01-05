@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 });
 
 // Adding routes to the express app
-app.use('/', home);
+app.use('/api', home);
 app.use('/users', users);
 
 // Error handing
