@@ -68,6 +68,9 @@ app.use((req, res, next) => {
 app.use('/api', home);
 app.use('/users', users);
 
+// Setting index route
+app.get('/', (req,res) => res.render('index'));
+
 // Error handing
 app.get('*', function(req, res, next) {
     var err = new Error();
