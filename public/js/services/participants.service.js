@@ -7,11 +7,16 @@ ParticipantsService.$inject = ["$http"];
 function ParticipantsService($http) {
     let service = {}
     service.GetParticipants = GetParticipants;
+    service.AddParticipant = AddParticipant;
 
     return service
 
     function GetParticipants() {
-        return $http.get('/api/').then(handleSuccess, handleError('Error getting all users'));
+        return $http.get('/api/').then(handleSuccess, handleError('Error getting all participant'));
+    }
+
+    function AddParticipant(data) {
+        return $http.post('/api/', data).then(handleSuccess, handleError('Error inserting participant'));
     }
 
     // private functions
