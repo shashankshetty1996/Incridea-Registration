@@ -67,7 +67,8 @@
             localStorage.setItem('globals', JSON.stringify($rootScope.globals));
             // deleting after 9 hours
             $timeout(function () {
-                localStorage.removeItem('globals');
+                // localStorage.removeItem('globals');
+                ClearCredentials();
             }, 9*60*60*1000);
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
@@ -75,6 +76,13 @@
             // cookieExp.setDate(9);
             // $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
             
+        }
+
+        function ClearCredentials() {
+            $rootScope.globals = {};
+            // $cookies.remove('globals');
+            localStorage.removeItem('globals');
+            $http.defaults.headers.common.Authorization = 'Bearer';
         }
 
         // function SetCredentials(username, password) {
@@ -95,13 +103,6 @@
         //     cookieExp.setDate(cookieExp.getDate() + 7);
         //     $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
         // }
-
-        function ClearCredentials() {
-            $rootScope.globals = {};
-            // $cookies.remove('globals');
-            localStorage.removeItem('globals');
-            $http.defaults.headers.common.Authorization = 'Bearer';
-        }
     }
 
     // Base64 encoding service used by AuthenticationService
