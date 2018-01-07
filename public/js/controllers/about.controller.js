@@ -13,9 +13,9 @@ function aboutController($scope) {
             "type" : "developer"
         },
         {
-            "name":"Shashank S Shetty", 
-            "mob":"9481752839", 
-            "link":"https://www.facebook.com/shashankshetty1996", 
+            "name":"Vaibhav D'souza", 
+            "mob":"9740840260", 
+            "link":"https://www.facebook.com/vaibhavdsouza", 
             "photo" : "img/img_avatar1.png", 
             "type" : "core"
         }
