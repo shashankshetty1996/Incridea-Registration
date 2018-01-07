@@ -69,6 +69,7 @@
             $timeout(function () {
                 // localStorage.removeItem('globals');
                 ClearCredentials();
+                console.log('logging session completed');
             }, 9*60*60*1000);
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
