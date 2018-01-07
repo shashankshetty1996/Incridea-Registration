@@ -22,7 +22,6 @@ a.links {
     color: inherit;
 }
 
-
 .side-dashboard-nav {
     min-height: 85vh !important;
 }
@@ -43,3 +42,50 @@ a.links {
 .side-dashboard-nav > li:first-child {
     border: none;
 }
+
+/* Home page */
+#brand {
+    height: 70vh;
+    background-image: url('../img/brand.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    z-index: -2;            
+}
+
+#brand > div {
+    height: 70vh;
+}
+
+#brand ul > li {
+    display: inline-block;
+    padding: 1rem;
+} 
+
+#brand ul > li > a {
+    text-decoration: none;
+} 
+
+#showcase {
+    background-image: url('../img/showcase.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.8;
+}
+
+.min-60 {
+    min-height: 60vh;
+}
+
+#about-incridea {
+    background-image: url('../img/about-incridea.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Home style ends */
