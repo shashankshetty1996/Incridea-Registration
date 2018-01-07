@@ -26,6 +26,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'pages/dashboard/register.ejs',
             controller: 'dashboardRegisterController'
         })
+        .when('/dashboard/event', {
+            templateUrl: 'pages/dashboard/event.ejs',
+            controller: 'dashboardEventController'
+        })
         .otherwise({
             redirectTo: '/'
         });
