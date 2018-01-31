@@ -1,7 +1,7 @@
 <section>
     <div class="bg-primary p-1 px-3 d-flex">
         <marquee behavior="scroll" direction="left" scrollamount="30" scrolldelay="200">
-            <h6 class="text-white">{{msg}}</h6>
+            <h6 class="text-white">{{ dashboardMsg }}</h6>
         </marquee>
     </div>
     <div class="container-fluid">
@@ -9,7 +9,7 @@
             <div class="col-md-2 col-sm-12 border border-top-0 border-bottom-0 border-left-0 bg-light px-0">
                 <ul class="list-group side-dashboard-nav">
                     <li class="list-group-item">
-                        <h4 class="text-capitalize text-center my-2">Dashboard Options</h4>                        
+                        <h4 class="text-capitalize text-center my-2">Dashboard Options</h4>
                     </li>
                     <li class="list-group-item active">
                         <h2 class="text-capitalize h6">General</h2>
@@ -42,11 +42,6 @@
                     </li>
                     <li class="list-group-item">
                         <a href="#!dashboard/event" class="list-group-item-action links">
-                            <h2 class="text-capitalize h6">Events Registration</h2>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#!dashboard" class="list-group-item-action links">
                             <h2 class="text-capitalize h6">Events Schedule</h2>
                         </a>
                     </li>
@@ -55,10 +50,52 @@
                             <h2 class="text-capitalize h6">Contact Organizers</h2>
                         </a>
                     </li>
-                </ul>                
+                </ul>
             </div>
-            <div class="col-md-10 col-sm-12 d-flex justify-content-center">
-                <h1 class="display-1 text-capitalize">main section</h1>
+            <div class="col-md-10 col-sm-12">
+                <h1 class="display-4 text-capitalize">{{ recentMsg }}</h1>
+                <ul class="list-group" id="participant-list">
+                    <li class="list-group-item" ng-repeat="x in participantsList | orderBy : 'PID' : true | limitTo: 10" ng-click="detailsToggle()">
+                        <div ng-show="details">
+                            <span>Name: {{ x.Name }}</span>
+                            <span class="float-right">PID: {{ x.PID }}</span>
+                        </div>
+                        <table class="table table-bordered" ng-hide="details">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <td>Header</td>
+                                    <td>Values</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>{{ x.Name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>USN</td>
+                                    <td>{{ x.USN }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email ID</td>
+                                    <td>{{ x.Email_ID }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>{{ x.Phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>College</td>
+                                    <td>{{ collegeName(x.College_code) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PID</td>
+                                    <td>{{ x.PID }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
