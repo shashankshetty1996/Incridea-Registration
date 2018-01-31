@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const participants = require('../model/participants');
 const college = require('../model/college');
+const issue = require('../model/issue');
 
 let router = express.Router();
 
@@ -96,6 +97,64 @@ router.get('/participant/external', verifyToken, (req,res) => {
         }
         participants.getExternalCount((err, result) => {
             res.send(result[0]);
+        });
+    });
+});
+
+// Add Issue
+router.post('/issue/', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        let message = req.body.message;
+        issue.addIssue(message, (err, result) => {
+            if(err) {
+                res.sendStatus(403);
+            }
+            issue.getIssue((err, result) => {
+                if(err) {
+                    res.sendStatus(403);
+                }        
+                res.send(result);
+            });
+        });
+    });
+});
+
+// list all the issue
+router.get('/issue/', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        issue.getIssue((err, result) => {
+            if(err) {
+                res.sendStatus(403);
+            }        
+            res.send(result);
+        });
+    });
+});
+
+// Toggle status
+router.post('/issue/status/', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        let id = req.body.id;
+        let done = req.body.done;
+        issue.toggleStatus(id, done, (err, result) => {
+            if(err) {
+                res.sendStatus(403);
+            }        
+            issue.getIssue((err, result) => {
+                if(err) {
+                    res.sendStatus(403);
+                }        
+                res.send(result);
+            });
         });
     });
 });

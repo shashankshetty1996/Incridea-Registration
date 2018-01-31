@@ -2,9 +2,9 @@
 
 angular.module("myApp").factory("DashboardService", DashboardService);
 
-DashboardService.$inject = ["ParticipantsService", "CollegeService"];
+DashboardService.$inject = ["ParticipantsService", "CollegeService", "IssueService"];
 
-function DashboardService(ParticipantsService, CollegeService) {
+function DashboardService(ParticipantsService, CollegeService, IssueService) {
     let service = {}
     let response;
     
@@ -14,6 +14,9 @@ function DashboardService(ParticipantsService, CollegeService) {
     service.GetTotalRegistrationCount = GetTotalRegistrationCount;
     service.GetInternalRegistrationCount = GetInternalRegistrationCount;
     service.GetExternalRegistrationCount = GetExternalRegistrationCount;
+    service.IssueList = IssueList;
+    service.AddIssue = AddIssue;
+    service.ToggleIssueStatus =ToggleIssueStatus;
     
     return service;
 
@@ -71,6 +74,39 @@ function DashboardService(ParticipantsService, CollegeService) {
 
     function GetExternalRegistrationCount(callback) {
         ParticipantsService.GetExternalRegistrationCount()
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function IssueList(callback) {
+        IssueService.IssueList()
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function AddIssue(message, callback) {
+        IssueService.AddIssue(message)
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function ToggleIssueStatus(id, done, callback) {
+        IssueService.ToggleIssueStatus(id, done)
             .then(function(res) {
                 response = {success: true, message: res};
                 callback(response);
