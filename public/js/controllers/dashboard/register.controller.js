@@ -2,30 +2,18 @@ angular
     .module('myApp')
     .controller('dashboardRegisterController', dashboardRegisterController);
 
-dashboardRegisterController.$inject = ['$scope', '$location', 'ParticipantsService', 'CollegeService'];
-function dashboardRegisterController($scope, $location, ParticipantsService, CollegeService) {
-    $scope.msg = 'Welcome from INCRIDEA';
-
+dashboardRegisterController.$inject = ['$scope', '$location', 'DashboardService'];
+function dashboardRegisterController($scope, $location, DashboardService) {
     // Error message alert.
     $scope.errorMsg = "Field data invalid";
     $scope.errorStatus = false;
 
     // college list
-    CollegeService.GetNames()
-    .then(function(res) {
-        console.log(res);
-        $scope.collegeList = res;
-    }, function(res) {
-        console.log('something went wrong');
+    DashboardService.GetCollegeList(function(result) {
+        if(result.success) {
+            $scope.collegeList = result.message;
+        }
     });
-    
-    // Create a participant service which will deal with the return
-    ParticipantsService.GetParticipants()
-        .then( function(user) {
-            console.log(user);
-        }, function(error) {
-            console.log(`something went wrong ${error}`);
-        });
 
     $scope.register = function() {
         let name = $scope.name;
@@ -34,24 +22,19 @@ function dashboardRegisterController($scope, $location, ParticipantsService, Col
         let phone = $scope.phone;
         let college = $scope.college.College_code;
 
-        let data = {name: name, usn: usn, email: email,phone: phone, college: college};
-        console.log(data);
+        // form data json object.
+        let user = {name: name, usn: usn, email: email,phone: phone, college: college};
 
-        // demo error checker
-        // if(name !== 'Shashank') {
-        //     $location.path('/dashboard');
-        // } else {
-        //     $scope.errorStatusReset($scope.errorStatus);
-        // }
-
-        ParticipantsService.AddParticipant(data)
-        .then(function(res) {
-            $scope.errorMsg = "Participants pid is "+res;
-            console.log(res);
-            $scope.errorStatusReset($scope.errorStatus);
-        }, function(res) {
-            $scope.errorMsg = res.message;
-            $scope.errorStatusReset($scope.errorStatus);
+        // Adding participant to database
+        DashboardService.AddParticipant(user, function(response) {
+            if(response.success) {
+                let successMsg = "Participants pid is "+response.message;
+                alert(`PID of the participant is ${successMsg}`);
+                $location.path('/dashboard/');
+            } else {
+                $scope.errorMsg = response.message;
+                $scope.errorStatusReset($scope.errorStatus);
+            }
         });
     }
 
