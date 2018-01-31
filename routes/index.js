@@ -51,7 +51,7 @@ router.post('/', verifyToken, (req,res) => {
 
 // list of college name
 router.get('/college/', verifyToken, (req, res) => {
-    jwt.verify(req.token, 'incridea', (err, autoData) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
         if(err) {
             res.sendStatus(403);
         } else {
@@ -59,6 +59,44 @@ router.get('/college/', verifyToken, (req, res) => {
                 res.send(result);
             });
         }
+    });
+});
+
+
+// Total number of participants count
+router.get('/participant/total', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        participants.getTotalCount((err, result) => {
+            result = result[0];
+            res.send(result);
+        });
+    });
+});
+
+// Internal registration count
+router.get('/participant/internal', verifyToken, (req,res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        participants.getInternalCount((err, result) => {
+            res.send(result[0]);
+        });
+    });
+});
+
+// External registration count
+router.get('/participant/external', verifyToken, (req,res) => {
+    jwt.verify(req.token, 'incridea', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        }
+        participants.getExternalCount((err, result) => {
+            res.send(result[0]);
+        });
     });
 });
 

@@ -26,3 +26,18 @@ module.exports.getParticipants = (callback) => {
     let sql = "SELECT * FROM participants";
     global.con.query(sql, callback);
 }
+
+module.exports.getTotalCount = (callback) => {
+    let sql = "SELECT COUNT(*) as count FROM participants";
+    global.con.query(sql, callback);
+}
+
+module.exports.getInternalCount = (callback) => {
+    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code = 1";
+    global.con.query(sql, callback);    
+}
+
+module.exports.getExternalCount = (callback) => {
+    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code != 1";
+    global.con.query(sql, callback);    
+}

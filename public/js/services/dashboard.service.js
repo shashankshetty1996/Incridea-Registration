@@ -11,6 +11,9 @@ function DashboardService(ParticipantsService, CollegeService) {
     service.GetCollegeList = GetCollegeList;
     service.AddParticipant = AddParticipant;
     service.GetParticipants = GetParticipants;
+    service.GetTotalRegistrationCount = GetTotalRegistrationCount;
+    service.GetInternalRegistrationCount = GetInternalRegistrationCount;
+    service.GetExternalRegistrationCount = GetExternalRegistrationCount;
     
     return service;
 
@@ -35,6 +38,39 @@ function DashboardService(ParticipantsService, CollegeService) {
 
     function GetParticipants(callback) {
         ParticipantsService.GetParticipants()
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function GetTotalRegistrationCount(callback) {
+        ParticipantsService.GetTotalRegistrationCount()
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function GetInternalRegistrationCount(callback) {
+        ParticipantsService.GetInternalRegistrationCount()
+            .then(function(res) {
+                response = {success: true, message: res};
+                callback(response);
+            }, function(res) {
+                response = res;
+                callback(response);
+            });
+    }
+
+    function GetExternalRegistrationCount(callback) {
+        ParticipantsService.GetExternalRegistrationCount()
             .then(function(res) {
                 response = {success: true, message: res};
                 callback(response);
