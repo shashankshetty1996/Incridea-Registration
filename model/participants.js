@@ -21,3 +21,8 @@ module.exports.generatePID = (body, pid, callback) => {
     let sql = "UPDATE participants SET PID = " + mysql.escape(pid) + " WHERE Name = " + mysql.escape(name) + " AND USN = " + mysql.escape(usn) + " AND Email_ID = " + mysql.escape(email) + " AND Phone = " + mysql.escape(phone) + " AND College_code = "+ mysql.escape(college);
     global.con.query(sql, callback);
 }
+
+module.exports.getParticipants = (callback) => {
+    let sql = "SELECT * FROM participants";
+    global.con.query(sql, callback);
+}

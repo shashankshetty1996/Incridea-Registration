@@ -10,7 +10,9 @@ router.get('/', verifyToken, (req,res) => {
         if(err) {
             res.sendStatus(403);
         } else {
-            res.send('working with jwt too');
+            participants.getParticipants((err, result) => {
+                res.json(result);
+            });
         }
     });
 });
