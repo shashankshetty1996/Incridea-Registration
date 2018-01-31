@@ -89,3 +89,7 @@ a.links {
 }
 
 /* Home style ends */
+
+.checkedClass span {
+    text-decoration: line-through;
+}

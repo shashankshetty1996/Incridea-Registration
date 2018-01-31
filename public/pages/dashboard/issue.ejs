@@ -58,14 +58,15 @@
                 </div>
 
                 <!-- ToDo -->
-                <div class="row">
-                    <div ng-repeat="issues in issueList">
-                        <div class="form-check" ng-class="{'checkedClass': issues.done, 'uncheckedClass': !issues.done}">
-                            <label class="form-check-label">
-                                <input type="checkbox" ng-checked="issues.done" ng-click="toggleStatus(issues)">
-                                <span class="lead" ng-bind="issues.message"></span>
-                                <br>
-                            </label>
+                <div class="card my-3 border border-0">
+                    <div class="card-body">
+                        <div ng-repeat="issues in issueList">
+                            <div class="form-check" ng-class="{'checkedClass': issues.done, 'uncheckedClass': !issues.done}">
+                                <label class="form-check-label">
+                                    <input type="checkbox" ng-checked="issues.done" ng-click="toggleStatus(issues)">
+                                    <span class="lead" ng-bind="issues.message"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>                
