@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$route', '$rootScope', '$timeout', 'UserService'];
+    function AuthenticationService($http, $route, $rootScope, $timeout, UserService) {
         let service = {};
         let response;
 
@@ -44,7 +44,7 @@
                 .then( function(user) {                    
                     if(user !== null && user.username === username) {
                         response = { success : true };             
-                        SetCredentialToken(username, user.token);
+                        SetCredentialToken(user.username, user.token);
                     } else {
                         response = { success: false, message: 'Username or password is incorrect' };
                     }
@@ -65,17 +65,6 @@
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
             // Local Storage concept.
             localStorage.setItem('globals', JSON.stringify($rootScope.globals));
-            // deleting after 9 hours
-            $timeout(function () {
-                // localStorage.removeItem('globals');
-                ClearCredentials();
-                console.log('logging session completed');
-            }, 9*60*60*1000);
-
-            // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
-            // let cookieExp = new Date();
-            // cookieExp.setDate(9);
-            // $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
             
         }
 
@@ -85,25 +74,6 @@
             localStorage.removeItem('globals');
             $http.defaults.headers.common.Authorization = 'Bearer';
         }
-
-        // function SetCredentials(username, password) {
-        //     let authdata = Base64.encode(username + ':' + password);
-
-        //     $rootScope.globals = {
-        //         currentUser: {
-        //             username: username,
-        //             authdata: authdata
-        //         }
-        //     };
-
-        //     // set default auth header for http requests
-        //     $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-
-        //     // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
-        //     let cookieExp = new Date();
-        //     cookieExp.setDate(cookieExp.getDate() + 7);
-        //     $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
-        // }
     }
 
     // Base64 encoding service used by AuthenticationService
