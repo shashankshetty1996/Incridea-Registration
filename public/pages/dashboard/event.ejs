@@ -42,11 +42,6 @@
                     </li>
                     <li class="list-group-item">
                         <a href="#!dashboard/event" class="list-group-item-action links">
-                            <h2 class="text-capitalize h6">Events Registration</h2>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#!dashboard" class="list-group-item-action links">
                             <h2 class="text-capitalize h6">Events Schedule</h2>
                         </a>
                     </li>
@@ -57,8 +52,13 @@
                     </li>
                 </ul>                
             </div>
-            <div class="col-md-10 col-sm-12 d-flex justify-content-center">
-                <h1 class="display-1 text-capitalize">Event Registration Page</h1>
+            <div class="col-md-10 col-sm-12">
+                <h1 class="display-4 text-capitalize">Event Registration Page</h1>
+                <p class="lead text-left">College List</p>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="x in collegeList">{{ x.Name }}</li>
+                </ul>
+                <p class="text-right mr-2 pr-2">{{ participantPID }}</p>
             </div>
         </div>
     </div>
