@@ -1,0 +1,60 @@
+<section>
+        <div class="bg-primary p-1 px-3 d-flex">
+            <marquee behavior="scroll" direction="left" scrollamount="30" scrolldelay="200">
+                <h6 class="text-white">{{ dashboardMsg }}</h6>
+            </marquee>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-12 border border-top-0 border-bottom-0 border-left-0 bg-light px-0">
+                    <ul class="list-group side-dashboard-nav">
+                        <li class="list-group-item">
+                            <h4 class="text-capitalize text-center my-2">Dashboard Options</h4>                        
+                        </li>
+                        <li class="list-group-item active">
+                            <h2 class="text-capitalize h6">General</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Instruction</h2>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard/register" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Register PID</h2>
+                            </a>
+                        </li>
+                        <li class="list-group-item active">
+                            <h2 class="text-capitalize h6">PID List</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Total Registration</h2>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard/issue" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Registration Issue</h2>
+                            </a>
+                        </li>
+                        <li class="list-group-item active">
+                            <h2 class="text-capitalize h6">Events</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard/event" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Events Schedule</h2>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#!dashboard" class="list-group-item-action links">
+                                <h2 class="text-capitalize h6">Contact Organizers</h2>
+                            </a>
+                        </li>
+                    </ul>                
+                </div>
+                <div class="col-md-10 col-sm-12">
+                    <h1 class="display-4 text-center text-capitalize my-2">{{ msg }}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
