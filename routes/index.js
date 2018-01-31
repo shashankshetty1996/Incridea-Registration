@@ -71,8 +71,7 @@ router.get('/participant/total', verifyToken, (req, res) => {
             res.sendStatus(403);
         }
         participants.getTotalCount((err, result) => {
-            result = result[0];
-            res.send(result);
+            res.send(result[0]);
         });
     });
 });
