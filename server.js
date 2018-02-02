@@ -16,7 +16,7 @@ let users = require('./routes/users');
 const app = express();
 
 // Defining node port.
-const port = process.env.port || 3000;
+const port = 5000;
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
     global.con = mysql.createConnection({
         host : "127.0.0.1" || "localhost",
         user : process.env.DB_USER || "root",
-        password : process.env.DB_PASSWORD || '',
+        password : process.env.DB_PASSWORD || 'root',
         database : process.env.DB_NAME || "incridea"
     });
     con.connect();
