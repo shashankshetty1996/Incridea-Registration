@@ -16,7 +16,7 @@ let users = require('./routes/users');
 const app = express();
 
 // Defining node port.
-const port = 5000;
+const port  = 80;
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -89,6 +89,6 @@ app.use(function(err, req, res, next) {
     res.send('Error something went wrong');
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
      console.log(`Started Node Server on port ${port}`);
 });

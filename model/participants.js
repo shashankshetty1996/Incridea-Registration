@@ -8,7 +8,11 @@ module.exports.addParticipants = (body, callback) => {
     let college = body.college;
 
     let sql = "INSERT INTO participants (Name, USN, Email_ID, Phone, College_code) VALUES (" + mysql.escape(name) + ", " + mysql.escape(usn) + ", " + mysql.escape(email) + ", " + mysql.escape(phone) + ", " + mysql.escape(college) + ")";
-    global.con.query(sql, callback);
+try {   
+ global.con.query(sql, callback);
+} catch ( e ) {
+
+}
 }
 
 module.exports.generatePID = (body, pid, callback) => {

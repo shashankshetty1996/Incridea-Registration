@@ -14,5 +14,4 @@ services:
     working_dir: '/home/node/server'
     volumes: ['.:/home/node/server']
     command: [ 'npm', 'start']
-    ports: ['3000:5000']
-    links: ['mysql']
+    network_mode: "host"
