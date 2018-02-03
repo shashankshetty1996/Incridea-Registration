@@ -36,21 +36,21 @@ function dashboardController($scope, DashboardService) {
     // Total Number of Registration
     DashboardService.GetTotalRegistrationCount(function(response) {
         if(response.success) {
-            $scope.total_registration = response.message;
+            $scope.total_registration = response.message[0];
         }
     });
 
     // Total Number of Internal Registration
     DashboardService.GetInternalRegistrationCount(function(response) {
         if(response.success) {
-            $scope.internal_registration = response.message;
+            $scope.internal_registration = response.message[0];
         }
     });
 
     // Total Number of External Registration
     DashboardService.GetExternalRegistrationCount(function(response) {
         if(response.success) {
-            $scope.external_registration = response.message;
+            $scope.external_registration = response.message[0];
         }
     });
 

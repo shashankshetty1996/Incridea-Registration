@@ -71,7 +71,7 @@ router.get('/participant/total', verifyToken, (req, res) => {
             res.sendStatus(403);
         }
         participants.getTotalCount((err, result) => {
-            res.send(result[0]);
+            res.send(result);
         });
     });
 });
@@ -83,7 +83,7 @@ router.get('/participant/internal', verifyToken, (req,res) => {
             res.sendStatus(403);
         }
         participants.getInternalCount((err, result) => {
-            res.send(result[0]);
+            res.send(result);
         });
     });
 });
@@ -95,7 +95,7 @@ router.get('/participant/external', verifyToken, (req,res) => {
             res.sendStatus(403);
         }
         participants.getExternalCount((err, result) => {
-            res.send(result[0]);
+            res.send(result);
         });
     });
 });
