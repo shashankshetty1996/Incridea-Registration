@@ -22,14 +22,20 @@ function dashboardRegisterController($scope, $location, DashboardService) {
         let phone = $scope.phone;
         let college = $scope.college.College_code;
 
+        // if not a number
+        if(isNaN(phone)) {
+            $scope.errorStatusReset($scope.errorStatus);
+            return 
+        }
+
         // form data json object.
         let user = {name: name, usn: usn, email: email,phone: phone, college: college};
 
         // Adding participant to database
         DashboardService.AddParticipant(user, function(response) {
             if(response.success) {
-                let successMsg = "Participants pid is "+response.message;
-                alert(`PID of the participant is ${successMsg}`);
+                let successMsg = "participant pid is "+response.message;
+                alert(`Registered ${successMsg}`);
                 $location.path('/dashboard/');
             } else {
                 $scope.errorMsg = response.message;

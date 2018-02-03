@@ -15,14 +15,14 @@ module.exports.addParticipants = (body, callback) => {
     }
 }
 
-module.exports.generatePID = (body, pid, callback) => {
+module.exports.generatePID = (si, body, pid, callback) => {
     let name = body.name;
     let usn = body.usn;
     let email = body.email;
     let phone = body.phone;
     let college = body.college;    
 
-    let sql = "UPDATE participants SET PID = " + mysql.escape(pid) + " WHERE Name = " + mysql.escape(name) + " AND USN = " + mysql.escape(usn) + " AND Email_ID = " + mysql.escape(email) + " AND Phone = " + mysql.escape(phone) + " AND College_code = "+ mysql.escape(college);
+    let sql = "UPDATE participants SET PID = " + mysql.escape(pid) + " WHERE Name = " + mysql.escape(name) + " AND USN = " + mysql.escape(usn) + " AND Email_ID = " + mysql.escape(email) + " AND Phone = " + mysql.escape(phone) + " AND College_code = "+ mysql.escape(college) + " AND id = " + si;
     try {   
         global.con.query(sql, callback);
     } catch ( e ) {
@@ -40,7 +40,7 @@ module.exports.getParticipants = (callback) => {
 }
 
 module.exports.getTotalCount = (callback) => {
-    let sql = "SELECT COUNT(*) as count FROM participants";
+    let sql = "SELECT COUNT(*) as count FROM participants WHERE PID != ''";
     try {   
         global.con.query(sql, callback);
     } catch ( e ) {
@@ -49,7 +49,7 @@ module.exports.getTotalCount = (callback) => {
 }
 
 module.exports.getInternalCount = (callback) => {
-    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code = 1";
+    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code = 1 AND PID != ''";
     try {   
         global.con.query(sql, callback);
     } catch ( e ) {
@@ -58,7 +58,7 @@ module.exports.getInternalCount = (callback) => {
 }
 
 module.exports.getExternalCount = (callback) => {
-    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code != 1";
+    let sql = "SELECT COUNT(*) as count FROM participants WHERE College_code != 1 AND PID != ''";
     try {   
         global.con.query(sql, callback);
     } catch ( e ) {

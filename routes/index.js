@@ -37,7 +37,7 @@ router.post('/', verifyToken, (req,res) => {
                     // PID format                       
                     pid = "IN-" + code + "-" + pid;
                     // Add pid to database of the user.
-                    participants.generatePID(body, pid, (err, data) => {
+                    participants.generatePID(result.insertId, body, pid, (err, data) => {
                         if(err) {
                             res.sendStatus(403);
                         } else {
