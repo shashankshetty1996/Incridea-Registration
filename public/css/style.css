@@ -50,9 +50,9 @@ a.links {
 /* Home page */
 #brand {
     height: 70vh;
-    background-image: url('../img/brand.jpg');
+    background-image: url('../img/brand-1.jpeg');
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center;
     background-size: cover;
     z-index: -2;            
 }
@@ -96,4 +96,8 @@ a.links {
 
 .checkedClass span {
     text-decoration: line-through;
+}
+
+.font-2x {
+    font-size: 2rem;
 }
