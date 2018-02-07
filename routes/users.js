@@ -29,8 +29,7 @@ router.post('/', (req, res) => {
         }
         if(result != '') { 
             // user found in the database  
-            let user = result[0];
-            jwt.sign({user:user.username}, 'incridea', (err, token) => {
+            jwt.sign({user:result[0].username}, 'incridea', (err, token) => {
                 result[0].token = token;
                 result = result[0];
                 console.log(result);
