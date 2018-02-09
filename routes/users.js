@@ -27,14 +27,16 @@ router.post('/', (req, res) => {
         if(err) {       
             res.sendStatus(403);
         }
-        if(result != '') { 
+        if(result != '') {
+	    console.log(result) 
             // user found in the database  
+	try {
             jwt.sign({user:result[0].username}, 'incridea', (err, token) => {
                 result[0].token = token;
                 result = result[0];
                 console.log(result);
                 res.json(result);
-            });
+            });} catch(e){res.sendStatus(403)}
         } else {
             res.json({username: '', password: '', flag: 0 });
         }
