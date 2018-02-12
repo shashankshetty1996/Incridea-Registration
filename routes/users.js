@@ -31,12 +31,12 @@ router.post('/', (req, res) => {
 	    console.log(result) 
             // user found in the database  
 	try {
-            jwt.sign({user:result[0].username}, 'incridea', (err, token) => {
+            jwt.sign({user:username}, 'incridea', (err, token) => {
                 result[0].token = token;
                 result = result[0];
                 console.log(result);
                 res.json(result);
-            });} catch(e){res.sendStatus(403)}
+            });} catch(e){res.json({username:"", password:"", flag:0})}
         } else {
             res.json({username: '', password: '', flag: 0 });
         }

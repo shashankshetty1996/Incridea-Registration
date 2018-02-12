@@ -1,17 +1,10 @@
 version: '2.0'
 services:
-  mysql:
-    image: leafney/ubuntu-mysql
-    volumes: ['/var/docker/incridea:/var/lib/mysql']
-    environment:
-      - MYSQL_ROOT_PWD=root
-      - MYSQL_USER_DB=incridea
-    ports:
-      - "3307:3306"
   server:
-    image: node:8
+    build: .
     user: node
-    working_dir: '/home/node/server'
-    volumes: ['.:/home/node/server']
-    command: [ 'npm', 'start']
+    working_dir: '/home/node/'
+    volumes: ['./:/home/node/']
     network_mode: "host"
+    
+

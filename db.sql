@@ -31,9 +31,9 @@ id int(11) NOT NULL AUTO_INCREMENT,
 Name varchar(255) DEFAULT NULL,
 USN varchar(100) NOT NULL,
 Email_ID varchar(255) DEFAULT NULL,
-Phone decimal(10,0) DEFAULT NULL,
+Phone varchar(20),
 College_code int(11) NOT NULL,
-PID varchar(10),
+PID varchar(10) unique,
 PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE users (

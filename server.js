@@ -16,7 +16,7 @@ let users = require('./routes/users');
 const app = express();
 
 // Defining node port.
-const port  = 80;
+const port  = 8000;
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -32,13 +32,25 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 // MySQL connection configuration
 // to make connection object access global through out the node application
 app.use((req, res, next) => {
-    global.con = mysql.createConnection({
+function handle(){    
+     var connection =   mysql.createConnection({
         host : "127.0.0.1" || "localhost",
         user : process.env.DB_USER || "root",
         password : process.env.DB_PASSWORD || 'root',
         database : process.env.DB_NAME || "incridea"
     });
-    con.connect();
+    connection.connect(function(err){
+if(!err){
+	setInterval(function(){
+	connection.query("show tables;");
+}, 2000);
+
+}
+    })
+    global.con = connection;
+
+}
+handle()
     next();
 });
 
@@ -89,6 +101,6 @@ app.use(function(err, req, res, next) {
     res.send('Error something went wrong');
 });
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, 'localhost', () => {
      console.log(`Started Node Server on port ${port}`);
 });
