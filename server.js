@@ -31,29 +31,27 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 // MySQL connection configuration
 // to make connection object access global through out the node application
-app.use((req, res, next) => {
-function handle(){    
+function handle(){
      var connection =   mysql.createConnection({
+	//connectionLimit : 65535,
         host : "127.0.0.1" || "localhost",
         user : process.env.DB_USER || "root",
-        password : process.env.DB_PASSWORD || 'root',
+        password : process.env.DB_PASSWORD || "root",
         database : process.env.DB_NAME || "incridea"
     });
     connection.connect(function(err){
-if(!err){
+      //if(err) {
+	//connection.release();
+      //}
+      if(!err){
 	setInterval(function(){
-	connection.query("show tables;");
-}, 2000);
-
-}
-    })
+	   connection.query("show tables;");
+        }, 2000);
+      }
+    });
     global.con = connection;
-
 }
-handle()
-    next();
-});
-
+handle();
 // Express Session
 app.use(session({
     secret : 'secret',
